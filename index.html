@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7 lte9 lte8 lte7" lang="en-US"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 lte9 lte8" lang="en-US">	<![endif]-->
+<!--[if IE 9]><html class="ie ie9 lte9" lang="en-US"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="noIE" lang="en-US">
+<!--<![endif]-->
+	<head>
+		<title>启明星工作室</title>
+
+		<!-- meta -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- google fonts -->
+		
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alegreya+Sans:regular,italic,bold,bolditalic">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nixie+One:regular,italic,bold,bolditalic">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alegreya+SC:regular,italic,bold,bolditalic">
+		
+		<!-- css -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css" media="screen">
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.js"></script>
+			<script src="assets/js/respond.js"></script>
+		<![endif]-->
+		  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+		  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+		  <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+		  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+		  <link href="css/style.css" rel="stylesheet" type="text/css">
+		<!--[if IE 8]>
+	    	<script src="assets/js/selectivizr.js"></script>
+	    <![endif]-->
+		<script>
+			Date.prototype.Format = function (fmt) { //author: meizz    //工具
+				var o = {  
+					"M+": this.getMonth() + 1, //月份   
+					"d+": this.getDate(), //日   
+					"H+": this.getHours(), //小时   
+					"m+": this.getMinutes(), //分   
+					"s+": this.getSeconds(), //秒   
+					"q+": Math.floor((this.getMonth() + 3) / 3), //季度   
+					"S": this.getMilliseconds() //毫秒   
+				};  
+				if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));  
+				for (var k in o)  
+				if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));  
+				return fmt;  
+			}  
+			$(function (){ //获取数据
+				var backgroundUrl = null;
+				var today = new Date();
+				var timestamp = Date.parse(today);
+				var dayAgo =  rand = parseInt(Math.random() * 5 + 3);
+				var tenDayAgo = timestamp - dayAgo*24*60*60*1000; //获取三天前的图
+				var timeAgo = new Date(tenDayAgo);
+				var picSrc = 'https://cdn.jsdelivr.net/gh/ITJoker233/BingPicApi/pic/'+timeAgo.Format("yyyyMMdd")+'.png'
+				var englishSrc = "http://open.iciba.com/dsapi/"
+				$.ajax({
+					url : picSrc,
+					async : false,
+					type : 'HEAD',
+					error : function() {
+						$(".header-wrapper-inner").css("background","url(images/header-bg.jpg)"); //不存在则默认图片
+					}, success : function() {
+						$(".header-wrapper-inner").css("background",'url('+picSrc+')'); //存在则切换
+					}
+				});
+			})
+			$(function (){ //刷新时间
+			  function timer(timestamp) {
+				  let day = 0, hour = 0, minute = 0, second = 0;
+				  if (timestamp > 0) {
+					  day = Math.floor(timestamp / (60 * 60 * 24));
+					  hour = Math.floor(timestamp / (60 * 60))  - (day * 24);
+					  minute = Math.floor(timestamp / 60)- (day * 24 * 60) - (hour * 60);
+					  second = Math.floor(timestamp) - (day * 24 * 60 * 60) - (hour * 60 * 60)-(minute*60);
+				  }
+				  if(day<=18) day='0'+day;
+				  if(hour<=9) hour='0'+hour;
+				  if (minute <= 9) minute = '0' + minute;
+				  if (second <= 9) second = '0' + second;
+				  $("#d").text(day);
+				  $("#h").text(hour);
+				  $("#m").text(minute);
+				  $("#s").text(second);
+			  }
+			  //输入目标时间
+			  let timeTarget="2021-03-01 00:00:00";
+			  window.setInterval(function (){
+				  res=Math.floor(Date.parse(new Date(timeTarget))/1000-Date.now()/1000);
+				  timer(res);
+			  },1000);
+			});
+			function deletePadding(){
+				window.setInterval(function (){
+					  $(document.body).css({'padding-right':'0px'});
+				},100);
+				
+			};
+		</script>
+	</head>
+	<!-- 模态框 -->
+	<div class="modal fade" id="myModal">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	 
+	      <!-- 模态框头部 -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">关注我们</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	 
+	      <!-- 模态框主体 -->
+	      <div class="modal-body">
+	        <header class="block-heading cleafix">
+	        	<h1>启明星工作室</h1>
+	        </header>
+	        <section class="block-body">
+	        	<div class="row">
+	        		<div class="col-sm-6">
+						<header class="block-heading cleafix">
+							<a href="https://www.ctguqmx.com" class="btn btn-o btn-lg pull-right">Join us</a>
+							<h1>工作室论坛</h1>
+						</header>
+	        			<a  href="https://www.ctguqmx.com/" class="recent-work" style="background-image:url(images/rain_1-320x240.jpeg)">
+	        				<span class="btn btn-o-white">启明星论坛</span>
+	        			</a>
+	        		</div>
+	        		<div class="col-sm-6">
+						<header class="block-heading cleafix">
+							<a href="https://space.bilibili.com/1897118941" class="btn btn-o btn-lg pull-right">点个关注</a>
+							<h1>哔哩哔哩</h1>
+						</header>
+	        			<a   href="https://space.bilibili.com/1897118941" class="recent-work" style="background-image:url(images/min_icons_thumb1-320x240.jpeg)">
+	        				<span class="btn btn-o-white">三峡大学启明星工作室</span>
+	        			</a>
+	        		</div>
+	        	</div>
+	        	
+	        </section>
+	      </div>
+	 
+	      <!-- 模态框底部 -->
+	      <div class="modal-footer">
+	        <button type="button" onclick="deletePadding()" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<body>
+		
+		<div id="drawer-right">
+			<div class="cross text-right">
+				<a class="toggleDrawer" href="#"><i class="fa fa-times-circle fa-2x"></i></a>
+			</div>
+			<h2>2021年度计划</h2>
+			<div class="col-sm-12">
+				<div class="timeline2-centered">
+					<div class="timeline2-entry">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon bg-success"><i class="fa fa-tint"></i></div>
+							<div class="timeline2-label">
+								<h2><a href="#"><strong>03-01</strong></a></h2>
+								<p>开学</p>
+							</div>
+						</div>
+					</div>
+					<div class="timeline2-entry">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon bg-success"><i class="fa fa-tint"></i></div>
+							<div class="timeline2-label">
+								<h2><a href="#"><strong>03-07</strong></a></h2>
+								<p>组间答辩</p>
+							</div>
+						</div>
+					</div>
+					<div class="timeline2-entry">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon bg-secondary"><i class="fa fa-suitcase"></i></div>
+							<div class="timeline2-label">
+								<h2><a href="#"><strong>03-15</strong></a></h2><a href="#">招新网页</a>
+								<p>宣讲会</p>
+							</div>
+						</div>
+					</div>
+					<div class="timeline2-entry">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon bg-info"><i class="fa fa-dashboard"></i></div>
+							<div class="timeline2-label">
+								<h2><a href="#"><strong>03-21</strong></a><a href="#">成绩查询</a></h2>
+								<p>笔试</p>
+							</div>
+						</div>
+					</div>
+					<div class="timeline2-entry">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon bg-warning"><i class="fa fa-camera"></i></div>
+							<div class="timeline2-label">
+								<h2><a href="#"><strong>03-31</strong></a></h2><a href="#">进组须知</a>
+								<p>进组</p>
+							</div>
+						</div>
+					</div>
+					<div class="timeline2-entry">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon bg-warning"><i class="fa fa-camera"></i></div>
+							<div class="timeline2-label">
+								<h2><a href="#"><strong>04-01</strong></a></h2>
+								<a href="#">比赛地址</a>
+								<p>愚人节专题比赛</p>
+							</div>
+						</div>
+					</div>
+					<div class="timeline2-entry begin">
+						<div class="timeline2-entry-inner">
+							<div class="timeline2-icon"><i class="fa fa-plus" style="color: #cccccc;position: relative;top: 3px;"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="social">
+				<h2>|-Stay Connected</h2>
+				<ul>
+					<li><a href><i class="fa fa-github-square fa-3x"></i></a></li>
+					<li><a href><i class="fa fa-facebook-square fa-3x"></i></a></li>
+					<li><a href><i class="fa fa-twitter-square fa-3x"></i></a></li>
+					<li><a href><i class="fa fa-tumblr-square fa-3x"></i></a></li>
+					<li><a href><i class="fa fa-google-plus-square fa-3x"></i></a></li>
+				</ul>
+			</div>
+		</div><!-- #drawer-right -->
+
+		<div id="wrapper">
+			
+			<div id="header" class="content-block header-wrapper">
+				<div class="header-wrapper-inner">
+					<section class="top clearfix">
+						<div class="pull-left">
+							<h1><a class="logo" href="index.html">启明星工作室</a></h1>
+						</div>
+						<div class="pull-right">
+							<a class="toggleDrawer" href="#"><i class="fa fa-bars fa-2x"></i></a>
+						</div>
+					</section>
+					<section class="center">
+						<header id="myheader">
+
+						   <div style="width:120px; height:120px; border-radius:50%; overflow:hidden;">
+							   <!-- 按钮：用于打开模态框 -->
+							   
+							   <img src="images/qmx.jpg" width="120px" hight="300px" />
+						   </div>
+						   <button type="button" class="btn btn-success" onclick="deletePadding()" data-toggle="modal" data-target="#myModal">
+						      关注我们
+						   </button>
+						   <div class="content">
+							   <div class="inner" style="padding-top: 20px;padding-bottom: 7px;">
+								   <h2 id="msg"></h2>
+								   <h1 id="days"></h1>
+								   <h1 id="dailysentence_c"><span style="color:white">距离开学还有</span></h1>
+								<h1 id="dayss" class="slogan" >
+									   <strong><span class="" id="d" >0</span><span class="time-s">天</span></strong>
+										<strong><span class="" id="h">0</span><span class="time-s">时</span></strong>
+										<strong><span class="" id="m">0</span><span class="time-s">分</span></strong>
+										<strong><span class="" id="s">0</span><span class="time-s">秒</span></strong>
+									</h1>
+								   <h1 id="dailysentence"><span style="color:white">Gollege entrance examination,fighting!</span></h1>
+								   
+							   </div>
+						   </div>
+						   <nav>
+							   <ul>
+								   <li><a href="#joinUs"><span style="color:white"><strong>招新宣传</strong></span></a></li>
+								   <li><a href="#english" class="toggleDrawer" id="todayEnglish"><span style="color:white"><strong>2021计划</strong></span></a></li>
+								   <li><a href="#ourJobs"><span style="color:white"><strong>工具项目</strong></span></a></li>
+							   </ul>
+						   </nav>
+					   </header>
+						<div class="secondary-slogan">
+							<br>
+							<h4 style="opacity: 0.8;color: gray;"><img src="https://visitor-badge.glitch.me/badge?page_id=qmx" class="img-rounded"></h4>
+							<br><br><br>图片抓取：bing每日一图
+						</div>
+					</section>
+					<section class="bottom">
+						<a id="scrollToContent" href="#joinUs">
+							<img src="images/arrow_down.png">
+						</a>
+					</section>
+				</div>
+			</div><!-- header -->
+			<div class="content-block parallax" id="joinUs" >
+				<div class="container">
+					<header class="block-heading cleafix">
+						<a href="#" class="btn btn-o btn-lg pull-right">View All</a>
+						<h1>启明星春季招新</h1>
+					</header>
+					<section class="block-body">
+						<div class="row">
+							<div class="col-sm-6">
+								<a  data-toggle="collapse" data-parent="#panel-831883" href="#panel-element-58794" class="recent-work" style="background-image:url(images/rain_1-320x240.jpeg)">
+									<span class="btn btn-o-white">开发组宣传视频</span>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a  data-toggle="collapse" data-parent="#panel-831884" href="#panel-element-93234" class="recent-work" style="background-image:url(images/min_icons_thumb1-320x240.jpeg)">
+									<span class="btn btn-o-white">智能组宣传视频</span>
+								</a>
+							</div>
+						</div>
+						
+					</section>
+					<div class="row clearfix">
+							<div class="col-md-12 column">
+								<div class="panel-group" id="panel-831883">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-831883" href="#panel-element-58794">开发组宣传视频</a>
+										</div>
+										<div id="panel-element-58794" class="panel-collapse collapse">
+											<div class="panel-body">
+											<div class="col-md-12 column">
+												<header class="block-heading cleafix">
+													<h2></h2>
+												</header>
+												<div class="embed-responsive embed-responsive-16by9">
+													<iframe src="//player.bilibili.com/player.html?aid=798333258&bvid=BV1Ey4y1U78L&cid=288569163&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+												</div>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-group" id="panel-831884">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-831884" href="#panel-element-93234">智能组宣传视频</a>
+										</div>
+										<div id="panel-element-93234" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div class="col-md-12 column">
+
+													<div class="embed-responsive embed-responsive-16by9">
+														<iframe src="//player.bilibili.com/player.html?aid=798333258&bvid=BV1Ey4y1U78L&cid=288569163&page=2" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					
+				</div>
+			</div><!-- #parallax -->
+			
+
+			<div class="content-block" id="ourJobs">
+				<div class="container">
+					<header class="block-heading cleafix">
+						<a href="#" class="btn btn-o btn-lg pull-right">View All</a>
+						<h1>工作室最新的项目</h1>
+						<p>由工作室成员自主创建的一些项目</p>
+					</header>
+					<section class="block-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<a href="https://ctguswzl.cn/login" class="recent-work" style="background-image:url(images/rain_1-320x240.jpeg)">
+									<span class="btn btn-o-white">失物招领中心</span>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<a href="#" class="recent-work" style="background-image:url(images/min_icons_thumb1-320x240.jpeg)">
+									<span class="btn btn-o-white">Lorem Rocks</span>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<a href="#" class="recent-work" style="background-image:url(images/flat_icons_thumb.jpeg)">
+									<span class="btn btn-o-white">Lorem Rocks</span>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<a href="#" class="recent-work" style="background-image:url(images/wood-320x240.jpeg)">
+									<span class="btn btn-o-white">Lorem Rocks</span>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<a href="#" class="recent-work" style="background-image:url(images/bike-320x240.jpeg)">
+									<span class="btn btn-o-white">Lorem Rocks</span>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<a href="#" class="recent-work" style="background-image:url(images/six_1-320x240.jpeg)">
+									<span class="btn btn-o-white">Lorem Rocks</span>
+								</a>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div><!-- #portfolio -->
+
+			<div class="content-block parallax" id="services">
+				<div class="container text-center">
+					<header class="block-heading cleafix">
+						<h1>我们的服务</h1>
+						<p>启明星工作室可以给你提供的外部服务</p>
+						<div class="contant"><button  type="button" class="btn btn-success">问题已解决</button>
+						<img src="https://visitor-badge.glitch.me/badge?page_id=404name" class="img-rounded">
+					</header>
+					<section class="block-body">
+						<div class="row">
+							<div class="col-md-3">
+								<a href="#contact"><div class="service">
+									<i class="fa fa-send-o"></i>
+									<h2>网站建设</h2>
+									<p style="color:white">搭建个人网站/企业官网/活动小程序等等</p>
+								</div>
+								</a>
+							</div>
+							<div class="col-md-3">
+								<a href="#contact"><div class="service">
+									<i class="fa fa-heart-o"></i>
+									<h2>模型建设</h2>
+									<p style="color:white">3D建模/平面设计/ps设计等等</p>
+								</div>
+								</a>
+							</div>
+							<div class="col-md-3">
+								<a href="#contact"><div class="service">
+									<i class="fa fa-heart-o"></i>
+									<h2>智能设计</h2>
+									<p style="color:white">51单片机/智能设备/树莓派等等</p>
+								</div>
+								</a>
+							</div>
+							<div class="col-md-3">
+								<a href="#contact"><div class="service">
+									<i class="fa fa-camera-retro"></i>
+									<h2>难疑解答</h2>
+									<p style="color:white">解决你学习路线/学习方向的问题等等</p>
+								</div>
+								</a>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div><!-- #services -->
+
+
+			<div class="content-block" id="blog">
+				<div class="container">
+					<header class="block-heading cleafix">
+						<a href="#" class="btn btn-o btn-lg pull-right">View All</a>
+						<h1>工作室动态</h1>
+						<p>Keep up with the latest happenings.</p>
+					</header>
+					<section class="block-body">
+						<div class="row">
+							<div class="col-sm-4 blog-post">
+								<img src="images/bike_water1-1000x600.jpeg">
+								<a href="#"><h2>工作室页面建立啦</h2></a>
+								<div class="date">3 Nov, 2021</div>
+								<p>In at accumsan risus. Nam id volutpat ante. </p>
+								<a href>Read More</a>
+							</div>
+							<div class="col-sm-4 blog-post">
+								<img src="images/mac_glasses1-1000x600.jpeg">
+								<a href="#"><h2>Winter Is Comming</h2></a>
+								<div class="date">3 Nov, 2014</div>
+								<p>In at accumsan risus. Nam id volutpat ante. </p>
+								<a href>Read More</a>
+							</div>
+							<div class="col-sm-4 blog-post">
+								<img src="images/road-1000x600.jpeg">
+								<a href="#"><h2>The Illustration</h2></a>
+								<div class="date">3 Nov, 2014</div>
+								<p>In at accumsan risus. Nam id volutpat ante. </p>
+								<a href>Read More</a>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div><!-- #blog -->
+
+
+			
+			<div class="content-block" id="testimonials">
+				<div class="container">
+					<header class="block-heading cleafix">
+						<h1>工作室成员</h1>
+						<p>Some happy customers have to say.</p>
+						<p>[忽略头像/随机头像api生成]</p>
+					</header>
+					<section class="block-body">
+						<div class="container">
+							<div class="row clearfix">
+								<div class="col-md-12 column">
+									<div class="row clearfix">
+										<div class="col-md-12 column">
+											<div class="testimonial">
+												<img src="http://api.btstu.cn/sjtx/api.php">
+												<p>启明星理事长：负责管理启明星,大三成员</p>
+												<h1><strong>王塞雅</strong></h1><br>
+												<span>联系方式@xxx</span>
+											</div>
+										</div>
+										<div class="col-md-12 column">
+											<div class="row clearfix">
+												<div class="col-md-4 col-sm-6 col-xs-6 column">
+													<div class="testimonial">
+														<img src="http://api.btstu.cn/sjtx/api.php?lx=a1">
+														<p>开发组组长：负责xxxx，擅长xxx，大二成员</p>
+														<h1><strong>唐静宇</strong></h1><br>
+														<span>联系方式@xxx</span>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-6 col-xs-6 column">
+													<div class="testimonial">
+														<img src="http://api.btstu.cn/sjtx/api.php?lx=a2">
+														<p>开发组组长：负责xxxx，擅长xxx，大二成员</p>
+														<h1><strong>李灵智</strong></h1><br>
+														<span>联系方式@xxx</span>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-6 col-xs-6 column">
+													<div class="testimonial">
+														<img src="http://api.btstu.cn/sjtx/api.php?lx=b1">
+														<p>开发组组长：负责xxxx，擅长xxx，大二成员</p>
+														<h1><strong>鞠怡</strong></h1><br>
+														<span>联系方式@xxx</span>
+													</div>
+												</div>
+											</div>
+											<div class="row clearfix">
+												<div class="col-md-4 col-sm-6 col-xs-6 column">
+													<div class="testimonial">
+														<img src="http://api.btstu.cn/sjtx/api.php?lx=b2">
+														<p>智能组组长：负责xxxx，擅长xxx，大二成员</p>
+														<h1><strong>邓志豪</strong></h1><br>
+														<span>联系方式@xxx</span>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-6 col-xs-6 column">
+													<div class="testimonial">
+														<img src="http://api.btstu.cn/sjtx/api.php?lx=c1">
+														<p>智能组组长：负责xxxx，擅长xxx，大二成员</p>
+														<h1><strong>方惺杰</strong></h1><br>
+														<span>联系方式@xxx</span>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-6 col-xs-6 column">
+													<div class="testimonial">
+														<img src="http://api.btstu.cn/sjtx/api.php?lx=c2">
+														<p>------------------------</p>
+														<h1><strong>---------</strong></h1><br>
+														<span>-----------</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 column"><table class="table">
+										<thead>
+											<tr>
+												<th>
+													开发组
+												</th>
+												<th>
+													大一
+												</th>
+												<th>
+													大二
+												</th>
+												<th>
+													大三
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													1
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													01/04/2012
+												</td>
+												<td>
+													Default
+												</td>
+											</tr>
+											<tr class="success">
+												<td>
+													1
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													01/04/2012
+												</td>
+												<td>
+													Approved
+												</td>
+											</tr>
+											<tr class="error">
+												<td>
+													2
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													02/04/2012
+												</td>
+												<td>
+													Declined
+												</td>
+											</tr>
+											<tr class="warning">
+												<td>
+													3
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													03/04/2012
+												</td>
+												<td>
+													
+												</td>
+											</tr>
+											<tr class="info">
+												<td>
+													4
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													04/04/2012
+												</td>
+												<td>
+													Call in to confirm
+												</td>
+											</tr>
+										</tbody>
+									</table></div>
+									<div class="col-md-6 column"><table class="table">
+										<thead>
+											<tr>
+												<th>
+													智能组
+												</th>
+												<th>
+													大一
+												</th>
+												<th>
+													大二
+												</th>
+												<th>
+													大三
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													1
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													01/04/2012
+												</td>
+												<td>
+													Default
+												</td>
+											</tr>
+											<tr class="success">
+												<td>
+													1
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													01/04/2012
+												</td>
+												<td>
+													Approved
+												</td>
+											</tr>
+											<tr class="error">
+												<td>
+													2
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													02/04/2012
+												</td>
+												<td>
+													Declined
+												</td>
+											</tr>
+											<tr class="warning">
+												<td>
+													3
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													03/04/2012
+												</td>
+												<td>
+													Pending
+												</td>
+											</tr>
+											<tr class="info">
+												<td>
+													4
+												</td>
+												<td>
+													TB - Monthly
+												</td>
+												<td>
+													04/04/2012
+												</td>
+												<td>
+													Call in to confirm
+												</td>
+											</tr>
+										</tbody>
+									</table></div>
+									
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div><!-- /#testimonials -->
+
+
+			<div class="content-block" id="contact">
+				<div class="container text-center">
+					<header class="block-heading cleafix">
+						<h1>联系我们</h1>
+						<p>注明要求，我们会为你提供帮助~</p>
+					</header>
+					<section class="block-body">
+						<div class="row">
+							<div class="col-md-6 col-md-offset-3">
+								<form class role="form">
+									<div class="form-group">
+								    	<input type="email" class="form-control form-control-white" id="subject" placeholder="Your Name" required>
+								  	</div>
+								    <div class="form-group">
+								    	<input type="email" class="form-control form-control-white" id="exampleInputEmail2" placeholder="Enter email" required>
+								    </div>
+								    <div class="form-group">
+								    	<textarea class="form-control form-control-white" placeholder="Write Something" required></textarea>
+								    </div>
+								  <input type="submit" class="btn btn-o-white" value="Say Hello">
+								</form>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div><!-- #contact -->
+
+			<div class="content-block" id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-6">Copyright &copy; 2021.Company name All rights reserved.</div>
+						<div class="col-xs-6 text-right"></div>
+					</div>
+				</div>
+			</div><!-- #footer -->
+
+
+		</div><!--/#wrapper-->
+
+
+
+
+		<script src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.actual.min.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/script.js"></script>
+<style>
+.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
+</style>
+	</body>
+</html>
