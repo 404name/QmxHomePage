@@ -259,23 +259,27 @@ h1, h2, h3, h4, h5, h6{
 .block-body {
 	margin-top: 60px;
 }
-
 #services {
-	background-image: url(../images/traffic.jpg);
+	background-image: url(../images/mid2.jpg);
 	color: white;
 }
 #parallax {
-	background-image: url(../images/blue_mac2.jpg);
+	background-image: url(../images/mid1.jpg);
+}
+#blog {
+	background-image: url(../images/mid3.jpg);
 	color: white;
 }
+#blog h1,h2{
+	color: white;
+}
+
 #contact {
-	background-image: url(../images/newsletter-bg.png);
+	background-image: url(../images/mid4.png);
 	color: white;
 	background-color: #405162;
 }
 #parallax h1{
-	margin-bottom: 60px;
-	color: white;
 }
 
 
