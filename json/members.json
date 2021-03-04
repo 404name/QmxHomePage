@@ -1,27 +1,27 @@
 {
     "qmxmaster": {
-        "msg": "启明星理事长：负责管理启明星,大三成员ee",
-        "name": "王塞雅ee",
-        "contact": "联系方式@xxxee",
-		"imgsrc":""
+        "msg": "启明星理事长：负责管理启明星,大三成员",
+        "name": "王塞雅",
+        "contact": "联系方式1551729628@qq.com",
+		"imgsrc":"http://q1.qlogo.cn/g?b=qq&nk=1551729628&s=100"
     },
     "kfzmaster": [
         {
-            "msg": "开发组组长：负责xxxx，擅长xxx，大二成员",
+            "msg": "暂时挂机中：负责开发组事项，擅长树莓，设计方向，大二成员",
             "name": "唐静宇",
-            "contact": "联系方式@xxx",
+            "contact": "联系方式2981686588@qq.com",
 			"imgsrc":""
         },
         {
-            "msg": "开发组组长：负责xxxx，擅长xxx，大二成员",
+            "msg": "开发组组长：负责工作室管理，擅长程序设计，网页开发，大二成员",
             "name": "李灵智",
             "contact": "联系方式@<a href='https://github.com/404name'><i class='fa fa-github-square fa-3x'></i></a>",
 			"imgsrc":""
         },
         {
-            "msg": "开发组组长：负责xxxx，擅长xxx，大二成员",
+            "msg": "开发组组长：负责工作室财务，擅长程序开发，大二成员",
             "name": "鞠怡",
-            "contact": "联系方式@xxx",
+            "contact": "联系方式1442068370@qq.com",
 			"imgsrc":""
         }
     ],
