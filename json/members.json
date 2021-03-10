@@ -3,26 +3,26 @@
         "msg": "启明星理事长：负责管理启明星,大三成员",
         "name": "王塞雅",
         "contact": "联系方式1551729628@qq.com",
-		"imgsrc":"http://q1.qlogo.cn/g?b=qq&nk=1551729628&s=100"
+                "imgsrc":"http://q1.qlogo.cn/g?b=qq&nk=1551729628&s=100"
     },
     "kfzmaster": [
         {
             "msg": "暂时挂机中：负责开发组事项，擅长树莓，设计方向，大二成员",
             "name": "唐静宇",
             "contact": "联系方式2981686588@qq.com",
-			"imgsrc":""
+                        "imgsrc":""
         },
         {
             "msg": "开发组组长：负责工作室管理，擅长程序设计，网页开发，大二成员",
-            "name": "李灵智",
+            "name": "<a href='https://404name.github.io/'>李灵智</a>",
             "contact": "联系方式@<a href='https://github.com/404name'><i class='fa fa-github-square fa-3x'></i></a>",
-			"imgsrc":""
+                        "imgsrc":""
         },
         {
             "msg": "开发组组长：负责工作室财务，擅长程序开发，大二成员",
             "name": "鞠怡",
             "contact": "联系方式1442068370@qq.com",
-			"imgsrc":""
+                        "imgsrc":""
         }
     ],
     "znzmaster": [
@@ -30,19 +30,19 @@
             "msg": "智能组组长：负责物联网等，擅长物联网技术（PHP），大二成员",
             "name": "邓致豪",
             "contact": "联系方式921686391@qq.com",
-			"imgsrc":""
+                        "imgsrc":""
         },
         {
             "msg": "智能组组长：负责电子信息等，擅长电焊，大二成员",
             "name": "方惺杰",
             "contact": "联系方式921686391@qq.com",
-			"imgsrc":""
+                        "imgsrc":""
         },
         {
             "msg": "--添加联系方式或者给名字加链接可自行修改gitee文件--",
             "name": "---随机头像api---",
             "contact": "-----------",
-			"imgsrc":""
+                        "imgsrc":""
         }
     ],
     "kfzmembers": {
@@ -50,7 +50,7 @@
             "<a href='#'>魏荐书</a>",
             "曹倜源",
             "毛奕娆",
-            "喻鑫锐",
+            "<a href='https://yxr2333.github.io/'>喻鑫锐</a>",
             "王帅",
             "张沛恒",
             "李子涵"
@@ -61,7 +61,7 @@
             "祝钰洁",
             "李煜",
             "赵普",
-            "杨澳宇",
+            "<a href='https://blog.csdn.net/qq_45786716'>杨澳宇</a>",
             "蔡志伟",
             "何志亮"
         ],
@@ -86,7 +86,7 @@
             "张康逸",
             "吴天磊",
             "张顺心",
-            "徐岩"
+            "<a href='https://tastynoob.github.io'>徐岩</a>"
         ],
         "daer": [
             "经纬铭",
