@@ -1,0 +1,547 @@
+{
+  "type": "page",
+  "body": [
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "title": "我的信息",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "内容1",
+              "inline": false
+            },
+            {
+              "type": "page",
+              "body": [
+                {
+                  "type": "card",
+                  "header": {
+                    "title": "昵名：${ls:nickName||呃呃呃}",
+                    "subTitle": "姓名：${ls:realName}",
+                    "description": "信息：${ls:institute}",
+                    "avatarClassName": "pull-left thumb-md avatar b-3x m-r",
+                    "avatar": "${ls:headImg}"
+                  },
+                  "body": [
+                    {
+                      "type": "tpl",
+                      "tpl": "<% if (this.token) { %>\n\t登录了\n<% this.token %>\n<% } else { %> \n\t点击登陆\n<% this.token %>\n<% } %>\n",
+                      "inline": false,
+                      "data": {
+                        "token": "${ls:token}"
+                      }
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": "button",
+                      "label": "编辑",
+                      "actionType": "dialog",
+                      "dialog": {
+                        "title": "编辑",
+                        "body": "你正在编辑该卡片"
+                      }
+                    },
+                    {
+                      "type": "button",
+                      "label": "删除",
+                      "actionType": "dialog",
+                      "dialog": {
+                        "title": "提示",
+                        "body": "你删掉了该卡片"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "个人简历",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "内容2",
+              "inline": false
+            },
+            {
+              "type": "card",
+              "header": {
+                "title": "标题",
+                "subTitle": "副标题",
+                "avatar": "https://fex.bdstatic.com/n/static/amis/renderers/crud/field/placeholder_cfad9b1.png"
+              },
+              "body": [
+                {
+                  "type": "tpl",
+                  "tpl": "内容",
+                  "inline": false
+                }
+              ],
+              "actions": [
+                {
+                  "type": "button",
+                  "label": "按钮",
+                  "actionType": "dialog",
+                  "dialog": {
+                    "title": "标题",
+                    "body": "内容"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "我的留言",
+          "body": [
+            {
+              "type": "page",
+              "body": [
+                {
+                  "type": "service",
+                  "api": "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample?perPage=5",
+                  "body": [
+                    {
+                      "type": "panel",
+                      "title": "简单 List 示例",
+                      "body": [
+                        {
+                          "type": "list",
+                          "source": "$rows",
+                          "listItem": {
+                            "body": [
+                              {
+                                "type": "hbox",
+                                "columns": [
+                                  {
+                                    "label": "Engine",
+                                    "name": "engine"
+                                  },
+                                  {
+                                    "name": "version",
+                                    "label": "Version"
+                                  }
+                                ]
+                              }
+                            ],
+                            "actions": [
+                              {
+                                "type": "button",
+                                "level": "link",
+                                "label": "查看详情",
+                                "actionType": "dialog",
+                                "dialog": {
+                                  "title": "查看详情",
+                                  "body": {
+                                    "type": "form",
+                                    "controls": [
+                                      {
+                                        "label": "Engine",
+                                        "name": "engine",
+                                        "type": "static"
+                                      },
+                                      {
+                                        "name": "version",
+                                        "label": "Version",
+                                        "type": "static"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tabs",
+      "mode": "tiled",
+      "tabs": [
+        {
+          "title": "我的组队",
+          "body": [
+            {
+              "type": "page",
+              "body": [
+                {
+                  "type": "crud",
+                  "api": "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/crud/users",
+                  "syncLocation": false,
+                  "mode": "cards",
+                  "defaultParams": {
+                    "perPage": 6
+                  },
+                  "switchPerPage": false,
+                  "placeholder": "没有用户信息",
+                  "columnsCount": 2,
+                  "card": {
+                    "header": {
+                      "className": "bg-white",
+                      "title": "$name",
+                      "subTitle": "$realName",
+                      "description": "$email",
+                      "avatar": "${avatar | raw}",
+                      "highlight": "$isSuperAdmin",
+                      "avatarClassName": "pull-left thumb-md avatar b-3x m-r"
+                    },
+                    "bodyClassName": "padder",
+                    "body": "\n      <% if (this.roles && this.roles.length) { %>\n        <% this.roles.map(function(role) { %>\n          <span class=\"label label-default\"><%- role.name %></span>\n        <% }) %>\n      <% } else { %>\n        <p class=\"text-muted\">没有分配角色</p>\n      <% } %>\n      ",
+                    "actions": [
+                      {
+                        "label": "编辑",
+                        "actionType": "dialog",
+                        "dialog": {
+                          "title": null,
+                          "body": {
+                            "api": "",
+                            "type": "form",
+                            "tabs": [
+                              {
+                                "title": "基本信息",
+                                "controls": [
+                                  {
+                                    "type": "hidden",
+                                    "name": "id"
+                                  },
+                                  {
+                                    "name": "name",
+                                    "label": "帐号",
+                                    "disabled": true,
+                                    "type": "text"
+                                  },
+                                  {
+                                    "type": "divider"
+                                  },
+                                  {
+                                    "name": "email",
+                                    "label": "邮箱",
+                                    "type": "text",
+                                    "disabled": true
+                                  },
+                                  {
+                                    "type": "divider"
+                                  },
+                                  {
+                                    "name": "isAmisOwner",
+                                    "label": "管理员",
+                                    "description": "设置是否为超级管理",
+                                    "type": "switch"
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "角色信息",
+                                "controls": []
+                              },
+                              {
+                                "title": "设置权限",
+                                "controls": []
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "label": "移除",
+                        "confirmText": "您确定要移除该用户?",
+                        "actionType": "ajax",
+                        "api": "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/notFound"
+                      }
+                    ]
+                  },
+                  "showHeader": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "我的管理",
+          "body": [
+            {
+              "type": "page",
+              "body": [
+                {
+                  "type": "crud",
+                  "api": {
+                    "methiod": "get",
+                    "url": "http://127.0.0.1:9002/api/users",
+                    "headers": {
+                      "Authorization": "${ls:token}"
+                    }
+                  },
+                  "syncLocation": false,
+                  "mode": "cards",
+                  "defaultParams": {
+                    "perPage": 6
+                  },
+                  "switchPerPage": false,
+                  "placeholder": "没有用户信息",
+                  "columnsCount": 2,
+                  "card": {
+                    "header": {
+                      "className": "bg-white",
+                      "title": "$name",
+                      "subTitle": "$realName",
+                      "description": "$email",
+                      "avatar": "${headImg | raw}",
+                      "highlight": "$isSuperAdmin",
+                      "avatarClassName": "pull-left thumb-md avatar b-3x m-r"
+                    },
+                    "bodyClassName": "padder",
+                    "body": "\n      <% if (this.roles && this.roles.length) { %>\n        <% this.roles.map(function(role) { %>\n          <span class=\"label label-default\"><%- role.name %></span>\n        <% }) %>\n      <% } else { %>\n        <p class=\"text-muted\">没有分配角色</p>\n      <% } %>\n      ",
+                    "actions": [
+                      {
+                        "label": "编辑",
+                        "actionType": "dialog",
+                        "dialog": {
+                          "title": null,
+                          "body": {
+                            "api": "",
+                            "type": "form",
+                            "tabs": [
+                              {
+                                "title": "基本信息",
+                                "controls": [
+                                  {
+                                    "type": "hidden",
+                                    "name": "id"
+                                  },
+                                  {
+                                    "name": "name",
+                                    "label": "帐号",
+                                    "disabled": true,
+                                    "type": "text"
+                                  },
+                                  {
+                                    "type": "divider"
+                                  },
+                                  {
+                                    "name": "email",
+                                    "label": "邮箱",
+                                    "type": "text",
+                                    "disabled": true
+                                  },
+                                  {
+                                    "type": "divider"
+                                  },
+                                  {
+                                    "name": "isAmisOwner",
+                                    "label": "管理员",
+                                    "description": "设置是否为超级管理",
+                                    "type": "switch"
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "角色信息",
+                                "controls": []
+                              },
+                              {
+                                "title": "设置权限",
+                                "controls": []
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "label": "移除",
+                        "confirmText": "您确定要移除该用户?",
+                        "actionType": "ajax",
+                        "api": "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/notFound"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "我的成就",
+          "body": [
+            {
+              "type": "page",
+              "body": [
+                {
+                  "label": "新增",
+                  "type": "button",
+                  "actionType": "dialog",
+                  "level": "primary",
+                  "className": "m-b-sm",
+                  "dialog": {
+                    "title": "新增表单",
+                    "body": {
+                      "type": "form",
+                      "api": "post:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                      "controls": [
+                        {
+                          "type": "text",
+                          "name": "engine",
+                          "label": "Engine"
+                        },
+                        {
+                          "type": "text",
+                          "name": "browser",
+                          "label": "Browser"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "crud",
+                  "api": "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample?orderBy=id&orderDir=desc",
+                  "syncLocation": false,
+                  "columns": [
+                    {
+                      "name": "id",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "engine",
+                      "label": "Rendering engine"
+                    },
+                    {
+                      "name": "browser",
+                      "label": "Browser"
+                    },
+                    {
+                      "name": "platform",
+                      "label": "Platform(s)"
+                    },
+                    {
+                      "name": "version",
+                      "label": "Engine version"
+                    },
+                    {
+                      "name": "grade",
+                      "label": "CSS grade"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "消息中心",
+          "body": [
+            {
+              "type": "page",
+              "data": {
+                "items": [
+                  {
+                    "engine": "Trident",
+                    "browser": "Internet Explorer 4.0",
+                    "platform": "Win 95+",
+                    "version": "4",
+                    "grade": "X"
+                  },
+                  {
+                    "engine": "Trident",
+                    "browser": "Internet Explorer 5.0",
+                    "platform": "Win 95+",
+                    "version": "5",
+                    "grade": "C"
+                  },
+                  {
+                    "engine": "Trident",
+                    "browser": "Internet Explorer 5.5",
+                    "platform": "Win 95+",
+                    "version": "5.5",
+                    "grade": "A"
+                  },
+                  {
+                    "engine": "Trident",
+                    "browser": "Internet Explorer 6",
+                    "platform": "Win 98+",
+                    "version": "6",
+                    "grade": "A"
+                  },
+                  {
+                    "engine": "Trident",
+                    "browser": "Internet Explorer 7",
+                    "platform": "Win XP SP2+",
+                    "version": "7",
+                    "grade": "A"
+                  }
+                ]
+              },
+              "body": [
+                {
+                  "type": "cards",
+                  "source": "$items",
+                  "card": {
+                    "body": [
+                      {
+                        "label": "Engine",
+                        "name": "engine"
+                      },
+                      {
+                        "label": "Browser",
+                        "name": "browser"
+                      },
+                      {
+                        "name": "version",
+                        "label": "Version"
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "type": "button",
+                        "level": "link",
+                        "icon": "fa fa-eye",
+                        "actionType": "dialog",
+                        "dialog": {
+                          "title": "查看详情",
+                          "body": {
+                            "type": "form",
+                            "controls": [
+                              {
+                                "label": "Engine",
+                                "name": "engine",
+                                "type": "static"
+                              },
+                              {
+                                "name": "browser",
+                                "label": "Browser",
+                                "type": "static"
+                              },
+                              {
+                                "name": "version",
+                                "label": "Version",
+                                "type": "static"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "icon": "fa fa-flag",
+          "iconPosition": "right"
+        }
+      ]
+    }
+  ],
+  "toolbar": []
+}
