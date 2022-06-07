@@ -1,13 +1,16 @@
 
 中文   |   [English](./README.zh-CN.md)
 
+<h1 align="center"><a href="http://ctguqmx.gitee.io/hello-qmx/" target="_blank">启明星 🚀 工作室主页</a></h1>
+
 <div align="center"> 
 <!--  <a href="http://ctguqmx.gitee.io/hello-qmx/"> <img alt="VbenAdmin Logo" width="200" src="https://user-images.githubusercontent.com/56631419/172303025-f40bed33-b27b-4f0b-89b6-c3fa6bfb8b9e.png"> </a> -->
+  
   <a href="http://ctguqmx.gitee.io/hello-qmx/"> <img width="200" src='https://user-images.githubusercontent.com/56631419/172303025-f40bed33-b27b-4f0b-89b6-c3fa6bfb8b9e.png'> </a>  
   <br>
 </div>
 
-<h1 align="center"><a href="http://ctguqmx.gitee.io/hello-qmx/" target="_blank">启明星 🚀 工作室主页</a></h1>
+
 <h3 align="center">带有工作室动态活动，成员架构等内容，开箱即用</h3>
 
 
@@ -16,7 +19,11 @@
 **工作室静态官网** 构建于2020大二刚刚学习完html后，用于工作室主页宣传用</br>
 采用gitee pages托管此页面，减低成本~不怕网站突然消失
 
-> 使用方法：fork该项目，修改对应数据，然后开启github action即可
+**使用方法**：利用githubaction 直接部署
+1. fork该项目，修改对应数据
+2. 进入 `github.com/[你的用户名]/QmxHomePage/settings/pages` 
+3. 选择分支master，点击save，然后等待部署成功
+4. 访问  `[你的用户名].github.io/QmxHomePage/` 即可
 
 **最近更新**：[当前版本1.0.1：迁移至github] [完整更新日志](#更新日志)
 
