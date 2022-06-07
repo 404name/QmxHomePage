@@ -3,7 +3,7 @@
 
 <div align="center"> 
 <!--  <a href="http://ctguqmx.gitee.io/hello-qmx/"> <img alt="VbenAdmin Logo" width="200" src="https://user-images.githubusercontent.com/56631419/172303025-f40bed33-b27b-4f0b-89b6-c3fa6bfb8b9e.png"> </a> -->
-  <a href="https://h-sina.404name.top"> <img width="200" src='https://user-images.githubusercontent.com/56631419/172300552-c570cf7f-bad6-409e-a23c-f421577fd73d.png'> </a>  
+  <a href="http://ctguqmx.gitee.io/hello-qmx/"> <img width="200" src='https://user-images.githubusercontent.com/56631419/172303025-f40bed33-b27b-4f0b-89b6-c3fa6bfb8b9e.png'> </a>  
   <br>
 </div>
 
